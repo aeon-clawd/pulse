@@ -102,7 +102,8 @@ function CountryDetail({ country, onClose, getToneColor, getDissonanceColor }) {
   const fetchDetail = async (code) => {
     setLoading(true);
     try {
-      const r = await fetch(`/api/country/${code}`);
+      const API = import.meta.env.VITE_API_URL || '';
+      const r = await fetch(`${API}/api/country/${code}`);
       setData(await r.json());
     } catch (e) { console.error(e); }
     finally { setLoading(false); }

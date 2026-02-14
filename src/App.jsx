@@ -21,7 +21,8 @@ function App() {
   const fetchSentiment = async () => {
     try {
       setLoading(true);
-      const r = await fetch('/api/sentiment');
+      const API = import.meta.env.VITE_API_URL || '';
+      const r = await fetch(`${API}/api/sentiment`);
       const data = await r.json();
       setSentimentData(data.countries || {});
       setLastUpdated(data.timestamp ? new Date(data.timestamp) : new Date());
