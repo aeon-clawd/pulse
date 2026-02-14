@@ -1,0 +1,51 @@
+[1/50] 2% | United States: int=-0.48 ext=-0.69 dis=0.21
+[2/50] 4% | China: int=1.48 ext=0.53 dis=0.95
+[3/50] 6% | Russia: int=0 ext=0 dis=0
+[4/50] 8% | United Kingdom: int=-0.2 ext=-0.75 dis=0.55
+[5/50] 10% | Germany: int=0 ext=-0.77 dis=0.77
+[6/50] 12% | France: int=0 ext=-0.84 dis=0.84
+[7/50] 14% | Japan: int=0.6 ext=0 dis=0.6
+[8/50] 16% | India: int=-0.62 ext=0 dis=0.62
+[9/50] 18% | Brazil: int=-0.57 ext=0 dis=0.57
+[10/50] 20% | Australia: int=-1.11 ext=-0.31 dis=0.8
+[11/50] 22% | Canada: int=0.09 ext=-0.34 dis=0.43
+[12/50] 24% | South Korea: int=-0.56 ext=0.15 dis=0.71
+[13/50] 26% | Mexico: int=0 ext=-0.83 dis=0.83
+[14/50] 28% | Italy: int=-0.36 ext=0.14 dis=0.5
+[15/50] 30% | Spain: int=-0.75 ext=-0.65 dis=0.1
+[16/50] 32% | Turkey: int=0 ext=-0.38 dis=0.38
+[17/50] 34% | Saudi Arabia: int=1.0 ext=0.33 dis=0.67
+[18/50] 36% | Iran: int=-3.48 ext=-2.11 dis=1.37
+[19/50] 38% | Israel: int=0 ext=-2.5 dis=2.5
+[20/50] 40% | Ukraine: int=0 ext=0 dis=0
+[21/50] 42% | Poland: int=0 ext=0 dis=0
+[22/50] 44% | Netherlands: int=-1.17 ext=-0.07 dis=1.1
+[23/50] 46% | Sweden: int=0 ext=0 dis=0
+[24/50] 48% | Norway: int=-1.33 ext=0 dis=1.33
+[25/50] 50% | Argentina: int=-1.07 ext=-0.33 dis=0.74
+[26/50] 52% | Colombia: int=0 ext=-0.99 dis=0.99
+[27/50] 54% | Egypt: int=0.38 ext=0.13 dis=0.25
+[28/50] 56% | Nigeria: int=0 ext=-1.03 dis=1.03
+[29/50] 58% | South Africa: int=0 ext=0.07 dis=0.07
+[30/50] 60% | Indonesia: int=-0.12 ext=0 dis=0.12
+[31/50] 62% | Thailand: int=1.42 ext=0.48 dis=0.94
+[32/50] 64% | Vietnam: int=1.07 ext=1.86 dis=0.79
+[33/50] 66% | Pakistan: int=-1.07 ext=-1.8 dis=0.73
+[34/50] 68% | Bangladesh: int=-0.13 ext=0 dis=0.13
+[35/50] 70% | Philippines: int=0 ext=0 dis=0
+[36/50] 72% | Malaysia: int=-0.67 ext=0 dis=0.67
+[37/50] 74% | Taiwan: int=0 ext=0 dis=0
+[38/50] 76% | Singapore: int=-0.59 ext=0.34 dis=0.93
+[39/50] 78% | United Arab Emirates: int=1.67 ext=0 dis=1.67
+[40/50] 80% | Qatar: int=2.27 ext=-0.8 dis=3.07
+[41/50] 82% | Iraq: int=-1.63 ext=-1.79 dis=0.16
+[42/50] 84% | Syria: int=-0.97 ext=0 dis=0.97
+[43/50] 86% | Afghanistan: int=0 ext=-2.95 dis=2.95
+[44/50] 88% | Kenya: int=-0.36 ext=0 dis=0.36
+[45/50] 90% | Ethiopia: int=1.72 ext=-0.75 dis=2.47
+[46/50] 92% | Myanmar: int=-0.41 ext=0 dis=0.41
+[47/50] 94% | Venezuela: int=0 ext=-2.08 dis=2.08
+[48/50] 96% | Chile: int=-1.04 ext=1.51 dis=2.55
+[49/50] 98% | Peru: int=0 ext=-0.05 dis=0.05
+[50/50] 100% | Cuba: int=-2.33 ext=-2.41 dis=0.08
+DONE — saved to /tmp/gdelt-sentiment.json
