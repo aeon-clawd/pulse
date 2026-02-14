@@ -131,7 +131,7 @@ function App() {
           <div className="brand">
             <div className="brand-icon">◉</div>
             <div>
-              <h1 className="title">Sens<span className="title-accent">Mundi</span></h1>
+              <h1 className="title">Pul<span className="title-accent">se</span></h1>
               <p className="subtitle">Global Sentiment Intelligence</p>
             </div>
           </div>
