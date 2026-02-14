@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://api.aeoninfinitive.com/api/:path*"
+      "destination": "https://vps-dee05c78.vps.ovh.net/pulse-api/:path*"
     }
   ]
 }

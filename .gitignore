@@ -5,3 +5,4 @@ pipeline/
 *.db-wal
 *.db-shm
 .env.local
+.vercel
