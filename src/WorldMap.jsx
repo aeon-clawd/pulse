@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps';
 import ISO_NUMERIC_TO_ALPHA2 from './isoMapping';
+import { useI18n } from './i18n.jsx';
 
 const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 
@@ -13,9 +14,15 @@ const CONTINENT_VIEWS = {
   oceania: { center: [140, -25], zoom: 3 },
 };
 
-function WorldMap({ sentimentData, getCountryColor, getTooltipExtra, onCountryClick, continent = 'world' }) {
+function WorldMap({ sentimentData, getCountryColor, getTooltipExtra, onCountryClick, continent = 'world', lang }) {
+  const { t } = useI18n();
   const [tooltip, setTooltip] = useState(null);
   const view = CONTINENT_VIEWS[continent] || CONTINENT_VIEWS.world;
+
+  const getDisplayName = (data, geoName) => {
+    if (!data) return geoName;
+    return lang === 'es' ? (data.name_es || data.name || geoName) : (data.name || geoName);
+  };
 
   return (
     <>
@@ -58,13 +65,13 @@ function WorldMap({ sentimentData, getCountryColor, getTooltipExtra, onCountryCl
                       pressed: { outline: 'none' }
                     }}
                     onMouseEnter={(e) => {
-                      const name = data?.name || geoName;
+                      const name = getDisplayName(data, geoName);
                       if (name) {
-                        setTooltip({ x: e.clientX, y: e.clientY, data: data ? data : { name }, noData: !data });
+                        setTooltip({ x: e.clientX, y: e.clientY, data: data ? { ...data, displayName: name } : { displayName: name }, noData: !data });
                       }
                     }}
                     onMouseMove={(e) => {
-                      if (tooltip) setTooltip(t => ({ ...t, x: e.clientX, y: e.clientY }));
+                      if (tooltip) setTooltip(prev => ({ ...prev, x: e.clientX, y: e.clientY }));
                     }}
                     onMouseLeave={() => setTooltip(null)}
                     onClick={() => {
@@ -80,10 +87,10 @@ function WorldMap({ sentimentData, getCountryColor, getTooltipExtra, onCountryCl
 
       {tooltip && (
         <div className="tooltip" style={{ left: tooltip.x + 15, top: tooltip.y - 10 }}>
-          <div className="tooltip-name">{tooltip.data?.name || ''}</div>
+          <div className="tooltip-name">{tooltip.data?.displayName || ''}</div>
           <div className="tooltip-info">
-            {tooltip.noData ? 'No data available' 
-              : !tooltip.data?.lastUpdated ? 'Pending...' 
+            {tooltip.noData ? t('noData')
+              : !tooltip.data?.lastUpdated ? t('pending')
               : getTooltipExtra(tooltip.data)}
           </div>
         </div>

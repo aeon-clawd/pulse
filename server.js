@@ -25,6 +25,28 @@ function getDb() {
   return db;
 }
 
+// --- Subscribers DB (separate, writable) ---
+const SUBS_DB_PATH = path.join(__dirname, 'pipeline', 'subscribers.db');
+let subsDb;
+
+function getSubsDb() {
+  if (!subsDb) {
+    subsDb = new Database(SUBS_DB_PATH);
+    subsDb.pragma('journal_mode = WAL');
+    subsDb.exec(`
+      CREATE TABLE IF NOT EXISTS subscribers (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        email TEXT NOT NULL UNIQUE,
+        lang TEXT DEFAULT 'en',
+        created_at TEXT NOT NULL DEFAULT (datetime('now')),
+        confirmed INTEGER DEFAULT 0,
+        unsubscribed INTEGER DEFAULT 0
+      )
+    `);
+  }
+  return subsDb;
+}
+
 // --- API ---
 
 // All countries sentiment (for map)
@@ -88,7 +110,7 @@ app.get('/api/country/:code', (req, res) => {
 
   // Fetch latest analysis
   const analysis = d.prepare(`
-    SELECT summary_en, summary_es, key_topics, tension_level, context, model, timestamp
+    SELECT summary_en, summary_es, key_topics, key_topics_es, tension_level, context, context_es, model, timestamp
     FROM analyses
     WHERE country_code = ?
     ORDER BY timestamp DESC
@@ -128,13 +150,34 @@ app.get('/api/country/:code', (req, res) => {
     dissonance: country.dissonance || 0,
     analysis: analysis ? {
       summary: analysis.summary_en,
+      summary_es: analysis.summary_es,
       keyTopics: analysis.key_topics ? JSON.parse(analysis.key_topics) : null,
+      keyTopics_es: analysis.key_topics_es ? JSON.parse(analysis.key_topics_es) : null,
       tensionLevel: analysis.tension_level,
       context: analysis.context,
+      context_es: analysis.context_es,
       model: analysis.model,
       date: analysis.timestamp
     } : null
   });
+});
+
+// --- Newsletter subscription ---
+app.post('/api/subscribe', (req, res) => {
+  const { email, lang } = req.body;
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return res.status(400).json({ error: 'Invalid email' });
+  }
+  const d = getSubsDb();
+  try {
+    d.prepare('INSERT INTO subscribers (email, lang) VALUES (?, ?)').run(email.toLowerCase().trim(), lang || 'en');
+    res.json({ ok: true });
+  } catch (e) {
+    if (e.message.includes('UNIQUE')) {
+      return res.json({ ok: true, already: true });
+    }
+    res.status(500).json({ error: 'Server error' });
+  }
 });
 
 // Serve static frontend
